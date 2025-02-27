@@ -1,4 +1,4 @@
-import { RoleBasedPermissions, RoleHierarchy } from './config';
+import { RoleBasedPermissions, RoleHierarchy } from './config.js';
 
 interface PermissionContext {
   permissions: string[];
@@ -75,18 +75,28 @@ export class PermissionManager {
   }
 
   // Permission check
+
   hasPermission(requiredPermission: string) {
-		if (this.context.permissions.includes(requiredPermission)) {
-			return true;
-		}
+  	if (this.context.permissions.includes(requiredPermission)) {
+  		return true;
+  	}
 
-		return this.hasPermissionThroughRole(
-			this.context.roles,
-			requiredPermission
-		);
-	}
+  	return this.hasPermissionThroughRole(
+  		this.context.roles,
+  		requiredPermission
+  	);
+  }
 
+  // hasPermission1(requiredPermission: string) {
+  //   if (this.context.permissions.indexOf(requiredPermission) !== -1) {
+  //     return true;
+  //   }
 
+  //   return this.hasPermissionThroughRole(
+  //     this.context.roles,
+  //     requiredPermission
+  //   );
+  // }
 
   // public hasPermission(requiredPermission: string) {
   //   if (!this.context.roles || this.context.roles.length === 0) {
@@ -140,12 +150,10 @@ export class PermissionManager {
     }, this.context.roles[0]);
   }
 
-
-
   private hasPermissionThroughRole(roles: string[], permission: string) {
-		return roles.some((role) =>
-			this.cachedRolePermissions.get(role)?.has(permission)
-		);
-	}
+    return roles.some((role) =>
+      this.cachedRolePermissions.get(role)?.has(permission)
+    );
+  }
 }
 
