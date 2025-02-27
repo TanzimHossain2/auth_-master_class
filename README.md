@@ -88,7 +88,8 @@ export class FreeTrailPolicy extends Policy {
 Clone the repository and install dependencies:
 
 ```sh
-
+git clone https://github.com/TanzimHossain2/auth_-master_class.git
+cd auth_-master_class
 pnpm install
 
 ```
@@ -99,11 +100,6 @@ pnpm install
 pnpm dev
 ```
 
-### Running Tests
-
-```sh
-pnpm test
-```
 
 ## Contributing
 
